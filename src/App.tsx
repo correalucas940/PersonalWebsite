@@ -1,17 +1,16 @@
 import React, {useState} from "react";
-import {ImageBackground, StyleSheet, View, Text, Button, Alert, TouchableOpacity, Image} from 'react-native';
-import image from "./image/family_chooser_tecnica_m.png";
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Header } from "@rneui/themed";
+import  {Pressable, StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
+
 
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: 'white',
   },
   text: {
     fontSize: 30,
-    color: 'red',
+    color: 'black',
   },
   button: {
     alignItems: "center",
@@ -23,29 +22,59 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   image: {
-    flex: 1,
-    justifyContent: "center",
     padding: 250,
     resizeMode: 'contain'
   },
-
+  carImage: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  wrapperCustom: {
+    borderRadius: 8,
+    padding: 6,
+  },
+  logBox: {
+    padding: 20,
+    margin: 30,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#f0f0f0',
+    backgroundColor: '#f9f9f9'
+  }
 });
 
 const App = (): JSX.Element => {
-  const [count, setCount] = useState(0)
-  const onPress = () => setCount(prevCount => prevCount + 1);
+  const [timesPressed, setTimesPressed] = useState(0)
 
+  let textLog = '';
+  if (timesPressed > 0 && timesPressed < 101) {
+    textLog = timesPressed + ' times the button was clicked';
+  } else if (timesPressed > 100) {
+    textLog = 'You really need some help to have clicked more than 100 times'
+  }
   return (
+    
     <View style={styles.container}>
-        <View style={styles.countContainer}>
-          <Text>Count: {count}</Text>
-        </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={onPress}
-        >
-        <Text>Click me</Text>
-        </TouchableOpacity>
+        <Pressable
+          onPress={() => {
+            setTimesPressed((current) => current + 1);
+          }}
+      style={({ pressed }) => [
+        {
+          backgroundColor: pressed
+          ? 'rgb(255, 255, 255)'
+          : 'white'
+        },
+      styles.wrapperCustom
+      ]}>
+        {({ pressed }) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'Press Me'}
+          </Text>
+        )}
+      </Pressable>
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_console">{textLog}</Text>
+      </View>
         <Text style={styles.text}> Building my first website </Text>
         <Image
         style={styles.image}
@@ -54,6 +83,6 @@ const App = (): JSX.Element => {
       </View>
     
   );
-}
+};
 
 export default App;
