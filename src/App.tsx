@@ -1,18 +1,32 @@
-import React from 'react';
-import './App.css';
+import {ImageBackground, StyleSheet, View, Text} from 'react-native';
+import image from "./image/family_chooser_tecnica_m.png"
 
-function App() {
+
+const styles = StyleSheet.create({
+  app: {
+    backgroundColor: 'black',
+    padding: 500,
+  },
+  text: {
+    fontSize: 30,
+    color: 'red',
+  },
+
+});
+
+const App = (): JSX.Element => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Hello, my name is Lucas Correa.
-        </h1>
-        <p>
-          Banana
-        </p>
-        </header>
-    </div>
+    <View style={styles.app}>
+    <ImageBackground
+      source={image}
+      style={{
+        width: '50%',
+        height: '50%',
+        position: 'absolute',
+      }} />
+        <Text style={styles.text}> Building my first website </Text>
+      </View>
+    
   );
 }
 
