@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import  {Pressable, StyleSheet, View, Text, TouchableOpacity, Image, Dimensions} from 'react-native';
-
-
+import  {Pressable, StyleSheet, View, Text, Image} from 'react-native';
+import Faq from "react-faq-component";
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -21,14 +21,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
-  image: {
-    padding: 250,
-    resizeMode: 'contain'
-  },
-  carImage: {
-    flex: 1,
-    justifyContent: "center",
-  },
   wrapperCustom: {
     borderRadius: 8,
     padding: 6,
@@ -42,9 +34,23 @@ const styles = StyleSheet.create({
   }
 });
 
+const config = {
+  animate: true,
+  arrowIcon: "↓",
+  tabFocus: true,
+}
 const App = (): JSX.Element => {
   const [timesPressed, setTimesPressed] = useState(0)
-  const { width, height } = Dimensions.get('screen');
+
+  const style = {
+    bgColor: 'white',
+    titleTextColor: "blue",
+    rowTitleColor: "blue",
+    rowContentColor: 'black',
+    arrowColor: "green",
+    titleTextSize: '32px',
+    rowContentPaddingLeft: '10px',
+  };
 
   let textLog = '';
   if (timesPressed > 0 && timesPressed < 101) {
@@ -52,6 +58,26 @@ const App = (): JSX.Element => {
   } else if (timesPressed > 100) {
     textLog = 'You really need some help to have clicked more than 100 times'
   }
+
+  const data = {
+    title: "FAQ",
+    rows: [
+        {
+            title: "Why did I create this site.",
+            content: `I created this website to practice my programming and just mess around and add whatever I think is interesting.`,
+        },
+        {
+            title: "What do I like to do.",
+            content:
+                "I like to play video games, read books, watch anime and socialize with my friends. I also like to do HTB (Hack The Box) and work on my website whenever I am free.",
+        },
+        {
+            title: "Favorite video game.",
+            content: `My favorite video game is BDO (Black Desert Online). As to why it is my favorite, I can't answer because I don't even know that answer myself. `,
+        },
+    ],
+}
+
   return (
     
     <View style={styles.container}>
@@ -77,10 +103,17 @@ const App = (): JSX.Element => {
         <Text testID="pressable_press_console">{textLog}</Text>
       </View>
         <Text style={styles.text}> Building my first website </Text>
-          <View style={{ width: width * 0.9, display: "flex", flexDirection: "row", flexWrap: "wrap", alignContent: "center", alignItems: "center", justifyContent: "center" }}>
-        <Image source={require('.//image/family_chooser_tecnica_m.png')}style={{width: "40%", height: 400}} />
-        <Image source={require('.//image/Choncc.png')}style={{width: "20%", height: 500}} />
+          <View style={{ flexDirection: 'row',  alignContent: "center", alignItems: "center", justifyContent: "center", }}>
+        <Image source={require('.//image/family_chooser_tecnica_m.png')}style={{width: "35%", height: 350}} />
+        <Image source={require('.//image/Choncc.png')}style={{width: "20%", height: 520}} />
           </View>
+          <div>
+            <Faq
+              data={data}
+              styles={style}
+              config={config}
+              />
+          </div>
       </View>
     
   );
