@@ -43,13 +43,14 @@ const App = (): JSX.Element => {
   const [timesPressed, setTimesPressed] = useState(0)
 
   const style = {
-    bgColor: 'white',
+    bgColor: 'black',
     titleTextColor: "blue",
     rowTitleColor: "blue",
-    rowContentColor: 'black',
+    rowContentColor: 'blue',
     arrowColor: "green",
     titleTextSize: '32px',
     rowContentPaddingLeft: '10px',
+    rowContentPaddingBottom: "10px",
   };
 
   let textLog = '';
