@@ -6,11 +6,11 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
   },
   text: {
     fontSize: 30,
-    color: 'black',
+    color: 'white',
   },
   button: {
     alignItems: "center",
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 30,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#f0f0f0',
-    backgroundColor: '#f9f9f9'
+    borderColor: 'grey',
+    backgroundColor: 'grey'
   }
 });
 
@@ -43,13 +43,14 @@ const App = (): JSX.Element => {
   const [timesPressed, setTimesPressed] = useState(0)
 
   const style = {
-    bgColor: 'white',
+    bgColor: 'black',
     titleTextColor: "blue",
     rowTitleColor: "blue",
-    rowContentColor: 'black',
+    rowContentColor: 'blue',
     arrowColor: "green",
     titleTextSize: '32px',
     rowContentPaddingLeft: '10px',
+    rowContentPaddingBottom: "10px",
   };
 
   let textLog = '';
@@ -88,8 +89,8 @@ const App = (): JSX.Element => {
       style={({ pressed }) => [
         {
           backgroundColor: pressed
-          ? 'rgb(255, 255, 255)'
-          : 'white'
+          ? 'rgb(0, 0, 0)'
+          : 'black'
         },
       styles.wrapperCustom
       ]}>
